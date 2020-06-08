@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="WARN">
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <RollingFile append="false" name="RollingFile" fileName="logs/app.log"
+                     filePattern="logs/app.%d{dd-MM-yyyy}.log">
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+            <PatternLayout pattern="%d{dd-MM-yyyy HH:mm:ss} %level %c.%m %ex{full} %n"/>
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+        <root level="debug">
+            <appender-ref ref="Console" level="debug"/>
+            <appender-ref ref="RollingFile" level="info"/>
+            <appender-ref ref="RollingFile" level="error"/>
+        </root>
+    </loggers>
+</configuration>
